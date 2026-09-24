@@ -1,65 +1,54 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="zh-CN">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <title>
-        评分管理系统
-    </title>
-
+    <title>评分系统</title>
 
     <style>
 
         body{
-
-            font-family:
-                    Arial;
-
-            padding:40px;
-
+            margin:0;
             background:#f5f7fb;
+            font-family:
+                    Arial,
+                    "Microsoft YaHei";
+        }
+
+
+        .container{
+
+            width:500px;
+            margin:100px auto;
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 5px 20px #ddd;
 
         }
 
 
-        .card{
-
-            background:white;
-
-            padding:30px;
-
-            border-radius:15px;
-
-            width:500px;
-
-            box-shadow:
-                    0 5px 20px #ddd;
-
+        h1{
+            text-align:center;
         }
 
 
         button{
 
-            width:260px;
-
+            width:100%;
             height:45px;
+            margin:10px 0;
 
-            margin:10px;
-
-            border:none;
-
+            border:0;
             border-radius:8px;
 
             background:#2563eb;
 
             color:white;
 
-            cursor:pointer;
-
             font-size:16px;
+
+            cursor:pointer;
 
         }
 
@@ -71,7 +60,7 @@
         }
 
 
-        .module{
+        .role-box{
 
             display:none;
 
@@ -81,15 +70,13 @@
 
     </style>
 
-
 </head>
-
 
 
 <body>
 
 
-<div class="card">
+<div class="container">
 
 
     <h1>
@@ -100,29 +87,19 @@
     <h3 id="welcome"></h3>
 
 
-
     <!-- 管理员 -->
 
     <div id="admin"
-         class="module">
+         class="role-box">
 
 
         <h2>
-            管理员菜单
+            管理员中心
         </h2>
 
 
-        <button onclick="go('/admin.html')">
-
-            用户/部门/模板管理
-
-        </button>
-
-
-        <button onclick="go('/workflow.html')">
-
-            评分任务管理
-
+        <button onclick="jump('/admin/admin-home.html')">
+            进入管理员后台
         </button>
 
 
@@ -133,62 +110,52 @@
     <!-- 领导 -->
 
     <div id="leader"
-         class="module">
+         class="role-box">
 
 
         <h2>
-            领导菜单
+            领导工作台
         </h2>
 
 
-        <button onclick="go('/workflow.html')">
-
-            待评分任务
-
-        </button>
-
-
-        <button onclick="go('/workflow.html')">
-
-            查看评分结果
-
+        <button onclick="jump('/leader/leader-home.html')">
+            进入领导页面
         </button>
 
 
     </div>
-
 
 
 
     <!-- 员工 -->
 
     <div id="employee"
-         class="module">
+         class="role-box">
 
 
         <h2>
-            员工菜单
+            员工工作台
         </h2>
 
 
-        <button onclick="go('/workflow.html')">
-
-            填写评分
-
-        </button>
-
-
-        <button onclick="go('/workflow.html')">
-
-            查看评分结果
-
+        <button onclick="jump('/employee/employee-home.html')">
+            进入员工页面
         </button>
 
 
     </div>
 
 
+
+    <button onclick="logout()">
+
+        退出登录
+
+    </button>
+
+
 </div>
+
 
 
 
@@ -204,7 +171,7 @@
 
     if(!user){
 
-        location.href="/login.html";
+        window.location.href="/login.html";
 
     }
 
@@ -212,7 +179,7 @@
 
     document
         .getElementById("welcome")
-        .innerHTML =
+        .innerHTML=
         "欢迎："+user.name+
         "　身份："+user.role;
 
@@ -248,14 +215,27 @@
 
 
 
-    function go(url){
+
+    function jump(url){
 
         window.location.href=url;
 
     }
 
 
+
+    function logout(){
+
+        sessionStorage.removeItem("user");
+
+        window.location.href="/login.html";
+
+    }
+
+
+
 </script>
+
 
 
 </body>
