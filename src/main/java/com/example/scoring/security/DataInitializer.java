@@ -1,0 +1,3 @@
+package com.example.scoring.security;
+import com.example.scoring.entity.*; import com.example.scoring.repository.*; import org.springframework.boot.CommandLineRunner; import org.springframework.context.annotation.*; import org.springframework.security.crypto.password.PasswordEncoder;
+@Configuration public class DataInitializer { @Bean CommandLineRunner init(UserRepository users,DepartmentRepository departments,PasswordEncoder encoder){return args->{if(users.findByUsername("admin").isEmpty()){Department d=new Department();d.name="总部";departments.save(d);User u=new User();u.username="admin";u.name="系统管理员";u.role="ADMIN";u.password=encoder.encode("admin123");u.department=d;users.save(u);}};}}

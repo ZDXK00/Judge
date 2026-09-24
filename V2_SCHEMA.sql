@@ -1,0 +1,11 @@
+USE scoring_system;
+ALTER TABLE score_template ADD COLUMN direction VARCHAR(40) NOT NULL DEFAULT 'EMPLOYEE_TO_LEADER';
+ALTER TABLE score_template ADD COLUMN total_score INT NOT NULL DEFAULT 100;
+ALTER TABLE score_template ADD COLUMN question_count INT NOT NULL DEFAULT 10;
+ALTER TABLE score_item CHANGE title question_text VARCHAR(255) NOT NULL;
+ALTER TABLE score_item MODIFY max_score INT NOT NULL DEFAULT 10;
+ALTER TABLE score_task ADD COLUMN direction VARCHAR(40) NOT NULL DEFAULT 'EMPLOYEE_TO_LEADER';
+ALTER TABLE task_participant ADD COLUMN target_id BIGINT NULL;
+ALTER TABLE task_participant ADD COLUMN direction VARCHAR(40) NULL;
+ALTER TABLE score_submission ADD COLUMN target_id BIGINT NULL;
+CREATE TABLE IF NOT EXISTS user_dimension(id BIGINT AUTO_INCREMENT PRIMARY KEY,user_id BIGINT NOT NULL,dimension_no INT NOT NULL,dimension_name VARCHAR(100) NOT NULL,dimension_type VARCHAR(40) NOT NULL,enabled BOOLEAN NOT NULL DEFAULT TRUE,UNIQUE KEY uk_user_dimension(user_id,dimension_no));

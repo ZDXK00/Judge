@@ -1,0 +1,21 @@
+POST http://localhost:8080/api/templates
+Content-Type: application/json
+
+{
+  "name": "员工评价领导模板",
+  "direction": "EMPLOYEE_TO_LEADER",
+  "items": [
+    {"title": "能够明确工作目标", "maxScore": 10},
+    {"title": "能够合理安排工作", "maxScore": 10},
+    {"title": "处理问题公平公正", "maxScore": 10},
+    {"title": "及时解决部门困难", "maxScore": 10},
+    {"title": "具有良好的决策能力", "maxScore": 10},
+    {"title": "与员工有效沟通", "maxScore": 10},
+    {"title": "重视员工成长", "maxScore": 10},
+    {"title": "主动承担管理责任", "maxScore": 10},
+    {"title": "能够以身作则", "maxScore": 10},
+    {"title": "带领团队完成目标", "maxScore": 10}
+  ]
+}
+
+

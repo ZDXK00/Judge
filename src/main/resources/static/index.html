@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>
+        评分管理系统
+    </title>
+
+
+    <style>
+
+        body{
+
+            font-family:
+                    Arial;
+
+            padding:40px;
+
+            background:#f5f7fb;
+
+        }
+
+
+        .card{
+
+            background:white;
+
+            padding:30px;
+
+            border-radius:15px;
+
+            width:500px;
+
+            box-shadow:
+                    0 5px 20px #ddd;
+
+        }
+
+
+        button{
+
+            width:260px;
+
+            height:45px;
+
+            margin:10px;
+
+            border:none;
+
+            border-radius:8px;
+
+            background:#2563eb;
+
+            color:white;
+
+            cursor:pointer;
+
+            font-size:16px;
+
+        }
+
+
+        button:hover{
+
+            background:#1d4ed8;
+
+        }
+
+
+        .module{
+
+            display:none;
+
+        }
+
+
+
+    </style>
+
+
+</head>
+
+
+
+<body>
+
+
+<div class="card">
+
+
+    <h1>
+        评分管理系统
+    </h1>
+
+
+    <h3 id="welcome"></h3>
+
+
+
+    <!-- 管理员 -->
+
+    <div id="admin"
+         class="module">
+
+
+        <h2>
+            管理员菜单
+        </h2>
+
+
+        <button onclick="go('/admin.html')">
+
+            用户/部门/模板管理
+
+        </button>
+
+
+        <button onclick="go('/workflow.html')">
+
+            评分任务管理
+
+        </button>
+
+
+    </div>
+
+
+
+    <!-- 领导 -->
+
+    <div id="leader"
+         class="module">
+
+
+        <h2>
+            领导菜单
+        </h2>
+
+
+        <button onclick="go('/workflow.html')">
+
+            待评分任务
+
+        </button>
+
+
+        <button onclick="go('/workflow.html')">
+
+            查看评分结果
+
+        </button>
+
+
+    </div>
+
+
+
+
+    <!-- 员工 -->
+
+    <div id="employee"
+         class="module">
+
+
+        <h2>
+            员工菜单
+        </h2>
+
+
+        <button onclick="go('/workflow.html')">
+
+            填写评分
+
+        </button>
+
+
+        <button onclick="go('/workflow.html')">
+
+            查看评分结果
+
+        </button>
+
+
+    </div>
+
+
+</div>
+
+
+
+<script>
+
+
+    let user =
+        JSON.parse(
+            sessionStorage.getItem("user")
+        );
+
+
+
+    if(!user){
+
+        location.href="/login.html";
+
+    }
+
+
+
+    document
+        .getElementById("welcome")
+        .innerHTML =
+        "欢迎："+user.name+
+        "　身份："+user.role;
+
+
+
+    if(user.role==="ADMIN"){
+
+        document
+            .getElementById("admin")
+            .style.display="block";
+
+    }
+
+
+
+    if(user.role==="LEADER"){
+
+        document
+            .getElementById("leader")
+            .style.display="block";
+
+    }
+
+
+
+    if(user.role==="EMPLOYEE"){
+
+        document
+            .getElementById("employee")
+            .style.display="block";
+
+    }
+
+
+
+    function go(url){
+
+        window.location.href=url;
+
+    }
+
+
+</script>
+
+
+</body>
+
+</html>
